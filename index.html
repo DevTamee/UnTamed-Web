@@ -170,11 +170,11 @@ const CONFIG={
   rules:[]                           // ["Rule one","Rule two"]
 };
 const RANKS=[
- {n:"Outlaw",p:"\u20B199",sum:"Outlaw kit, 5 homes, daily keys",kits:["Outlaw (3 day cooldown)"],homes:"5 total (+2)",give:["+100k money","+100 Fangs"],cmds:["/anvil","/craft","/echest"],keys:["3 vote keys","1 Outlaw key"],extra:[]},
- {n:"Rogue",p:"\u20B1199",sum:"Rogue kit, 7 homes, /disposal",kits:["Rogue (3 day cooldown)"],homes:"7 total (+4)",give:["+350k money","+250 Fangs"],cmds:["/disposal"],keys:["5 vote keys","1 Rogue key"],extra:[]},
- {n:"Warlord",p:"\u20B1399",sum:"3 kits, 9 homes, /fly, /repair",kits:["Warlord (5 day cooldown)","Outlaw (3 day cooldown)","Rogue (3 day cooldown)"],homes:"9 total (+6)",give:["+600k money","+400 Fangs"],cmds:["/repair","/nick","/fly","/back"],keys:["7 vote keys","1 Warlord key","1 Rogue key","1 Outlaw key"],extra:[]},
- {n:"Tyrant",p:"\u20B1699",sum:"4 kits, 11 homes, RTP with no cooldown",kits:["Tyrant (5 day cooldown)","Warlord (5 day cooldown)","Outlaw (3 day cooldown)","Rogue (3 day cooldown)"],homes:"11 total (+8)",give:["+900k money","+600 Fangs"],cmds:["/ptime","/pweather"],keys:["10 vote keys","1 Tyrant key","1 Warlord key","1 Rogue key","1 Outlaw key"],extra:["RTP with no cooldown"]},
- {n:"Overlord",p:"\u20B1999",sum:"5 kits, 15 homes, /stack, custom prefix color",kits:["Overlord (7 day cooldown)","Tyrant (5 day cooldown)","Warlord (5 day cooldown)","Outlaw (3 day cooldown)","Rogue (3 day cooldown)"],homes:"15 total (+12)",give:["+1.5m money","+1000 Fangs"],cmds:["/stack"],keys:["15 vote keys","1 Overlord key","1 Tyrant key","1 Warlord key","1 Rogue key","1 Outlaw key"],extra:["Fully custom rank prefix color (filtered)"]}
+ {n:"Outlaw",p:"\u20B199",sum:"Outlaw kit, 5 homes, 5% off /shop",kits:["Outlaw (3 day cooldown)"],homes:"5 total (+2)",give:["+100k money","+100 Scraps","5% off /shop"],cmds:["/anvil","/craft","/echest"],keys:["3 vote keys","1 Outlaw key"],extra:[]},
+ {n:"Rogue",p:"\u20B1199",sum:"Rogue kit, 7 homes, 10% off /shop",kits:["Rogue (3 day cooldown)"],homes:"7 total (+4)",give:["+350k money","+250 Scraps","10% off /shop"],cmds:["/disposal"],keys:["5 vote keys","1 Rogue key"],extra:[]},
+ {n:"Warlord",p:"\u20B1399",sum:"3 kits, 9 homes, 15% off /shop, /fly",kits:["Warlord (5 day cooldown)","Outlaw (3 day cooldown)","Rogue (3 day cooldown)"],homes:"9 total (+6)",give:["+600k money","+400 Scraps","15% off /shop"],cmds:["/repair","/nick","/fly","/back"],keys:["7 vote keys","1 Warlord key","1 Rogue key","1 Outlaw key"],extra:[]},
+ {n:"Tyrant",p:"\u20B1699",sum:"4 kits, 11 homes, 20% off /shop, no-cooldown RTP",kits:["Tyrant (5 day cooldown)","Warlord (5 day cooldown)","Outlaw (3 day cooldown)","Rogue (3 day cooldown)"],homes:"11 total (+8)",give:["+900k money","+600 Scraps","20% off /shop"],cmds:["/ptime","/pweather"],keys:["10 vote keys","1 Tyrant key","1 Warlord key","1 Rogue key","1 Outlaw key"],extra:["RTP with no cooldown"]},
+ {n:"Overlord",p:"\u20B1999",sum:"5 kits, 15 homes, 25% off /shop, /stack",kits:["Overlord (7 day cooldown)","Tyrant (5 day cooldown)","Warlord (5 day cooldown)","Outlaw (3 day cooldown)","Rogue (3 day cooldown)"],homes:"15 total (+12)",give:["+1.5m money","+1000 Scraps","25% off /shop"],cmds:["/stack"],keys:["15 vote keys","1 Overlord key","1 Tyrant key","1 Warlord key","1 Rogue key","1 Outlaw key"],extra:["Fully custom rank prefix color (filtered)"]}
 ];
 /* ====================== */
 const $=s=>document.querySelector(s), $$=s=>document.querySelectorAll(s);
@@ -194,7 +194,7 @@ RANKS.forEach((r,i)=>{
   cmds=cmds.concat(r.cmds);
   html+='<details class="rank"'+(i===0?" open":"")+'><summary><span><span class="rname">'+r.n+'</span><span class="rsum">'+r.sum+'</span></span><span class="rprice">'+r.p+'</span></summary><div class="rbody">'
    +'<div><h4>Kits</h4><ul>'+li(r.kits)+'</ul></div>'
-   +'<div><h4>Homes and rewards</h4><ul>'+li([r.homes+" homes"].concat(r.give))+'</ul></div>'
+   +'<div><h4>Homes, rewards and discount</h4><ul>'+li([r.homes+" homes"].concat(r.give))+'</ul></div>'
    +'<div><h4>Commands</h4><ul>'+li(cmds.concat(r.extra))+'</ul></div>'
    +'<div><h4>Keys (refresh every 24h)</h4><ul>'+li(r.keys)+'</ul></div>'+buy(r.n)+'</div></details>';
 });
