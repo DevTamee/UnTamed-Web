@@ -120,7 +120,7 @@ footer .wrap{display:flex;flex-wrap:wrap;gap:10px 28px;justify-content:space-bet
   <h2>Ranks</h2>
   <p class="lead">Everyone starts as Stray. Tap a rank to see what it includes.</p>
   <div id="ranklist"></div>
-  <p class="fine">Prices are in Philippine pesos (PHP). Your rank is applied in-game after payment.</p>
+  <p class="fine">Prices are in Philippine pesos (PHP). To get a rank, join our Discord and open a ticket. Staff will handle payment and set your rank in-game.</p>
 </div></section>
 
 <section id="join"><div class="wrap">
@@ -145,7 +145,7 @@ footer .wrap{display:flex;flex-wrap:wrap;gap:10px 28px;justify-content:space-bet
     <a class="yt" href="#"><b>YouTube</b><span>@TameEvents</span></a>
     <a class="tt" href="#"><b>TikTok</b><span>@tame_events</span></a>
   </div>
-  <p>Stuck or want to report something? Message the staff in our Discord and we'll help.</p>
+  <p>Need help, want to report something or buy a rank? Open a ticket in our Discord and staff will reply.</p>
   <p id="mail" hidden>Email: <a id="maila" href="#"></a></p>
 </div></section>
 
@@ -164,7 +164,6 @@ const CONFIG={
   discord:"https://discord.gg/MkPG5MXDfz",
   youtube:"https://www.youtube.com/@TameEvents",
   tiktok:"https://www.tiktok.com/@tame_events",
-  store:"",                          // paste your Tebex link. Empty = buttons say "Store coming soon"
   supportEmail:"",
   vote:[],                           // [{name:"Site name",url:"https://..."}]
   staff:[],                          // [{name:"Name",role:"Owner"}]
@@ -189,7 +188,7 @@ $$(".yt").forEach(e=>e.href=CONFIG.youtube);
 $$(".tt").forEach(e=>e.href=CONFIG.tiktok);
 $("#yr").textContent=new Date().getFullYear();
 
-const buy=n=>CONFIG.store?'<a class="buy" href="'+CONFIG.store+'">Buy '+n+'</a>':'<span class="buy off">Store coming soon</span>';
+const buy=n=>'<a class="buy" href="'+CONFIG.discord+'">Get '+n+' via Discord ticket</a>';
 let cmds=[],html='<div class="rank rstatic"><div><span class="rname">Stray</span><span class="rsum">Where everyone starts</span></div><div class="rprice">Free</div></div>';
 RANKS.forEach((r,i)=>{
   cmds=cmds.concat(r.cmds);
