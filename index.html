@@ -305,8 +305,8 @@ RANKS.forEach((r,i)=>{
 $("#ranklist").innerHTML=html;
 
 const MEDIA=[
- {n:"Media",c:"media-a",sum:"For creators, free for 30 days",perks:"Stay consistent! also has the same perms as Outlaw",need:["5 average viewers on a stream","300 views on a YouTube video","2k views on TikTok","1k views on a YouTube Short"]},
- {n:"Media+",c:"media-b",sum:"For bigger creators, free for 30 days",perks:"Stay consistent! also has the same perms as Rogue",need:["15 average viewers on a stream","1k views on a YouTube video","5k views on TikTok","2k views on a YouTube Short"]}
+ {n:"Media",c:"media-a",sum:"For creators, Make content for UnTamed!",perks:"Stay consistent! also has the same perms as Outlaw",need:["5 average viewers on a stream","300 views on a YouTube video","2k views on TikTok","1k views on a YouTube Short"]},
+ {n:"Media+",c:"media-b",sum:"For bigger creators, Make content for UnTamed!",perks:"Stay consistent! also has the same perms as Rogue",need:["15 average viewers on a stream","1k views on a YouTube video","5k views on TikTok","2k views on a YouTube Short"]}
 ];
 const REMIND=["Must have the IP on the screen","Must be from the new season","Create a ticket in Discord for the rank"];
 $("#medialist").innerHTML=MEDIA.map(r=>'<details class="rank '+r.c+'"><summary><span><span class="rname">'+r.n+'</span><span class="rsum">'+r.sum+'</span></span><span class="rprice">Free</span></summary><div class="rbody"><div><h4>Requirements (only one needed)</h4><ul>'+li(r.need)+'</ul></div><div><h4>Reminders</h4><ul>'+li(REMIND.concat(r.perks))+'</ul></div><a class="buy" href="'+CONFIG.discord+'">Apply for '+r.n+' via Discord ticket</a></div></details>').join("");
