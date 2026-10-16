@@ -110,6 +110,8 @@ section{padding:78px 0;border-top:2px solid var(--line)}
 .rbody li{padding:4px 0;border-top:1px solid var(--line)}
 .buy{display:inline-block;background:var(--red);color:#fff;font-weight:700;padding:11px 24px;border-radius:4px;text-decoration:none;align-self:end;justify-self:start}
 .buy:hover{background:var(--red-hot)}
+.rank.media-a .rname{color:#fc53f1}
+.rank.media-b .rname{color:#b71bfa}
 .fine{color:var(--muted);font-size:15px;margin-top:18px}
 .steps{display:grid;grid-template-columns:repeat(3,1fr);gap:28px}
 .steps div{border-top:4px solid var(--red);padding-top:14px}
@@ -154,7 +156,7 @@ footer .wrap{display:flex;flex-wrap:wrap;gap:10px 28px;justify-content:space-bet
 <div class="wrap">
   <header>
     <a class="brand" href="#top"><img id="logo" alt="">UnTamed</a>
-    <nav class="hnav" aria-label="Main"><a class="nl" href="#about">About</a><a class="nl" href="#leaderboards">Leaderboards</a><a class="nl" href="#ranks">Ranks</a><a class="nl" href="#join">Join</a><a class="nl" href="#vote">Vote</a><a class="nl" href="#community">Community</a><a class="btn btn-red btn-sm dc" href="#">Join Discord</a></nav>
+    <nav class="hnav" aria-label="Main"><a class="nl" href="#meta">Meta</a><a class="nl" href="#about">About</a><a class="nl" href="#leaderboards">Leaderboards</a><a class="nl" href="#ranks">Ranks</a><a class="nl" href="#join">Join</a><a class="nl" href="#vote">Vote</a><a class="nl" href="#community">Community</a><a class="btn btn-red btn-sm dc" href="#">Join Discord</a></nav>
   </header>
   <div class="hero" id="top">
     <div>
@@ -172,6 +174,12 @@ footer .wrap{display:flex;flex-wrap:wrap;gap:10px 28px;justify-content:space-bet
     <div class="mascot"><img id="mimg" alt="UnTamed mascot, a dark monitor head with glowing red eyes"></div>
   </div>
 </div>
+
+<section id="meta"><div class="wrap">
+  <h2>Current meta</h2>
+  <p class="lead">The best ways to make money right now.</p>
+  <div id="metalist"></div>
+</div></section>
 
 <section id="about"><div class="wrap">
   <h2>What you'll find here</h2>
@@ -204,6 +212,9 @@ footer .wrap{display:flex;flex-wrap:wrap;gap:10px 28px;justify-content:space-bet
   <p class="lead">Everyone starts as Stray. Tap a rank to see what it includes.</p>
   <div id="ranklist"></div>
   <p class="fine">Prices are in Philippine pesos (PHP). To get a rank, join our Discord and open a ticket. Staff will handle payment and set your rank in-game.</p>
+  <h3 class="sub" style="margin-top:44px">Media ranks</h3>
+  <p class="lead">Make content about UnTamed and earn a rank for free. You only need to meet one requirement.</p>
+  <div id="medialist"></div>
 </div></section>
 
 <section id="join"><div class="wrap">
@@ -255,6 +266,7 @@ const CONFIG={
     {name:"TopG.org",url:"https://topg.org/minecraft-servers/server-686865"}
   ],
   staff:[],                          // [{name:"Name",role:"Owner"}]
+  meta:[],                          // [{name:"Method",desc:"How it works"}]
   rules:[]                           // ["Rule one","Rule two"]
 };
 const RANKS=[
@@ -292,6 +304,14 @@ RANKS.forEach((r,i)=>{
 });
 $("#ranklist").innerHTML=html;
 
+const MEDIA=[
+ {n:"Media",c:"media-a",sum:"For creators, free for 30 days",perks:"Stay consistent! also has the same perms as Outlaw",need:["5 average viewers on a stream","300 views on a YouTube video","2k views on TikTok","1k views on a YouTube Short"]},
+ {n:"Media+",c:"media-b",sum:"For bigger creators, free for 30 days",perks:"Stay consistent! also has the same perms as Rogue",need:["15 average viewers on a stream","1k views on a YouTube video","5k views on TikTok","2k views on a YouTube Short"]}
+];
+const REMIND=["Must have the IP on the screen","Must be from the new season","Create a ticket in Discord for the rank"];
+$("#medialist").innerHTML=MEDIA.map(r=>'<details class="rank '+r.c+'"><summary><span><span class="rname">'+r.n+'</span><span class="rsum">'+r.sum+'</span></span><span class="rprice">Free</span></summary><div class="rbody"><div><h4>Requirements (only one needed)</h4><ul>'+li(r.need)+'</ul></div><div><h4>Reminders</h4><ul>'+li(REMIND.concat(r.perks))+'</ul></div><a class="buy" href="'+CONFIG.discord+'">Apply for '+r.n+' via Discord ticket</a></div></details>').join("");
+
+$("#metalist").innerHTML=CONFIG.meta.length?CONFIG.meta.map(m=>'<div class="feat"><h3>'+m.name+'</h3><p>'+m.desc+'</p></div>').join(""):'<div class="lb-empty"><b>Nothing here yet</b>Check back soon.</div>';
 if(CONFIG.rules.length){$("#rules").hidden=false;$("#rulelist").innerHTML=li(CONFIG.rules)}
 if(CONFIG.vote.length){$("#vote").hidden=false;$("#heroVote").hidden=false;$("#votelist").innerHTML=CONFIG.vote.map(v=>'<a href="'+v.url+'" target="_blank" rel="noopener"><b>'+v.name+'</b><span>Vote now</span></a>').join("")}
 if(CONFIG.staff.length){$("#staff").hidden=false;$("#stafflist").innerHTML=CONFIG.staff.map(s=>'<div><b>'+s.name+'</b><span>'+s.role+'</span></div>').join("")}
